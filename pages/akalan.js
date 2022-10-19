@@ -1,3 +1,5 @@
+import styles from "../styles/akalan.module.css";
+
 export default function Akalan() {
-  return "Akalan blog";
+  return <div className={styles.title}>Akalan blog</div>;
 }
