@@ -1,7 +1,7 @@
+import styles from '../styles/index.module.css'
+
 export default function Home() {
   return (
-    <div>
-      <h1>Hello. This is the home page.</h1>
-    </div>
+      <h1 className={styles.title}>Hello. This is the home page.</h1>
   );
 }
