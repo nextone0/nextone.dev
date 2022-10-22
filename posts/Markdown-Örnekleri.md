@@ -180,7 +180,7 @@ Bu bir satır içi `kod` dur.
 ```html
 <video controls>
   <source
-    src="https://filesamples.com/samples/video/mp4/sample_1280x720.mp4"
+    src="https://joy.videvo.net/videvo_files/video/free/2019-12/large_watermarked/190915_B_01_Timelapse%20Danang_05_preview.mp4"
     type="video/mp4"
   />
 </video>
@@ -197,13 +197,25 @@ Bu bir satır içi `kod` dur.
 
 ```html
 <iframe
-  src="https://www.youtube-nocookie.com/embed/lWwRoXkGgTg"
-  allow="fullscreen"
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.625297497569!2d-73.9852846846151!3d40.74881797932499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25903ce5e7213%3A0xb4ecf13ae8e86e31!2sNew%20York%2C%20NY%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1593640000000!5m2!1str!2str"
 ></iframe>
 ```
 
-```html
-<iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.625297497569!2d-73.9852846846151!3d40.74881797932499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25903ce5e7213%3A0xb4ecf13ae8e86e31!2sNew%20York%2C%20NY%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1593640000000!5m2!1str!2str"
-></iframe>
+```
+<details>
+  <summary>Dış</summary>
+  <blockquote>
+
+![alt metin](https://picsum.photos/200/300 "Üzerine gelince görünecek metin")
+
+  <details>
+    <summary>İç</summary>
+  <blockquote>
+
+![alt metin](https://picsum.photos/200/302 "Üzerine gelince görünecek metin")
+
+  </blockquote>
+  </details>
+  </blockquote>
+</details>
 ```
