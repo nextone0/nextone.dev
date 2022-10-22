@@ -1,5 +1,13 @@
-import "../styles/global.css";
+import "../styles/globals.css";
+import Header from "../components/Header";
 
-export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+export default function App({ Component, pageProps }) {
+  return (
+    <>
+      <Header />
+      <main className="main">
+        <Component {...pageProps} />
+      </main>
+    </>
+  );
 }
