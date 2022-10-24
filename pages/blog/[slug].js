@@ -1,66 +1,41 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-import { useEffect } from "react";
 
-import { marked } from "marked";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
 
-export default function PostPage({
-  frontmatter: { title, date, cover_image },
-  content,
-}) {
-  useEffect(() => {
-    const pre = document.getElementsByTagName("pre");
+import styles from "../../styles/Blog.module.css";
 
-    for (let i = 0; i < pre.length; i++) {
-      const div = document.createElement("div");
-      div.className = "code";
-      pre[i].parentNode.insertBefore(div, pre[i]);
-      div.appendChild(pre[i]);
+import { Button, CodeBlock } from "../../components";
 
-      const span = document.createElement("span");
-      span.className = "copyBtn";
-      span.innerText = "Kopyala";
-      pre[i].appendChild(span);
+const components = {
+  Button({ children }) {
+    return <Button>{children}</Button>;
+  },
+  pre: ({ children }) => <CodeBlock {...children.props} />,
+};
 
-      span.addEventListener("click", function () {
-        navigator.clipboard.writeText(pre[i].children[0].innerText);
-        span.innerText = "Kopyalandı";
-
-        setTimeout(() => {
-          span.innerText = "Kopyala";
-        }, 1000);
-      });
-    }
-  }, []);
-
+const PostPage = ({ mdxSource }) => {
   return (
-    <>
-      <Link href="/">
-        <a className="backBtn">Geri</a>
-      </Link>
-      <div className="card">
-        <h1 className="card__title">{title}</h1>
-        <div className="card__date">{date}</div>
-        <img className="card__coverImage" src={cover_image} />
-        <div
-          className="markdown-body"
-          dangerouslySetInnerHTML={{
-            __html: marked(content),
-          }}
-        ></div>
+    <main className={styles.main}>
+      <h1 className={styles.title}>{mdxSource.scope.title}</h1>
+      <div className={styles.date}>{mdxSource.scope.date}</div>
+      <img className={styles.coverImage} src={mdxSource.scope.cover_image} />
+      <div className="markdown-body">
+        <MDXRemote {...mdxSource} components={components} />
       </div>
-    </>
+    </main>
   );
-}
+};
 
-export async function getStaticPaths() {
+const getStaticPaths = async () => {
   const files = fs.readdirSync(path.join("posts"));
 
   const paths = files.map((filename) => ({
     params: {
-      slug: filename.replace(".md", ""),
+      slug: filename.replace(".mdx", ""),
     },
   }));
 
@@ -68,21 +43,23 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params: { slug } }) {
+const getStaticProps = async ({ params: { slug } }) => {
   const markdownWithMeta = fs.readFileSync(
-    path.join("posts", slug + ".md"),
+    path.join("posts", slug + ".mdx"),
     "utf-8"
   );
 
-  const { data: frontmatter, content } = matter(markdownWithMeta);
+  const { data: frontMatter, content } = matter(markdownWithMeta);
+  const mdxSource = await serialize(content, { scope: frontMatter });
 
   return {
     props: {
-      frontmatter,
-      slug,
-      content,
+      mdxSource,
     },
   };
-}
+};
+
+export { getStaticProps, getStaticPaths };
+export default PostPage;

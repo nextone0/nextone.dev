@@ -1,0 +1,29 @@
+.header {
+  height: 90px;
+  background-color: #2c2c2c;
+}
+
+.container {
+  max-width: 992px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 12px;
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.svg {
+  width: 64px;
+  height: 100%;
+}
+
+.brand {
+  margin-left: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

@@ -4,45 +4,47 @@ import Head from "next/head";
 
 import matter from "gray-matter";
 
-import Post from "../components/Post";
+import styles from "../styles/Home.module.css";
 
-export default function Home({ posts }) {
+import { Post } from "../components";
+
+const Home = ({ posts }) => {
   return (
     <>
       <Head>
         <title>Nextone</title>
       </Head>
 
-      <div className="posts">
+      <div className={styles.posts}>
         {posts.map((post, index) => (
           <Post key={index} post={post} />
         ))}
       </div>
     </>
   );
-}
+};
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const files = fs.readdirSync(path.join("posts"));
-  const posts = files.map((filename) => {
-    const slug = filename.replace(".md", "");
 
+  const posts = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       path.join("posts", filename),
       "utf-8"
     );
-
-    const { data: frontmatter } = matter(markdownWithMeta);
+    const { data: frontMatter } = matter(markdownWithMeta);
 
     return {
-      slug,
-      frontmatter,
+      frontMatter,
+      slug: filename.split(".")[0],
     };
   });
 
   return {
     props: {
-      posts: posts,
+      posts,
     },
   };
-}
+};
+
+export default Home;
