@@ -1,0 +1,376 @@
+---
+title: "FFmpeg Nedir?"
+date: "25 Ekim, 2022"
+excerpt: "Video, ses ve diğer multimedya dosyalarını ve akışlarını işlemek için bir dizi kitaplık ve programdan oluşan ücretsiz ve açık kaynaklı bir yazılım projesidir."
+cover_image: "https://ahmadawais.com/wp-content/uploads/2021/05/FFmpeg.jpg"
+author:
+  name: "Muhammet Emin Akalan"
+  picture: "https://github.com/05akalan57.png"
+---
+
+- [FFmpeg Nedir?](#ffmpeg-nedir)
+- [FFmpeg Nasıl Kurulur?](#ffmpeg-nasl-kurulur)
+  - [Linux](#linux)
+  - [macOS](#macos)
+  - [Windows](#windows)
+- [FFmpeg Kullanımı](#ffmpeg-kullanm)
+- [FFmpeg Komutları](#ffmpeg-komutlar)
+  - [Bilgi Alma](#bilgi-alma)
+  - [Video Format Dönüştürme](#video-format-dönütürme)
+  - [Video Sıkıştırma](#video-sktrma)
+  - [Video Kesme](#video-kesme)
+  - [Video Parçalama](#video-parçalama)
+  - [Video Birleştirme](#video-birletirme)
+  - [Video Döndürme](#video-döndürme)
+  - [Video Boyutlandırma](#video-boyutlandrma)
+  - [Video Hızlandırma](#video-hzlandrma)
+  - [Video Yavaşlatma](#video-yavalatma)
+  - [Video Metin Ekleme](#video-metin-ekleme)
+  - [Video Sesi Düzenleme](#video-sesi-düzenleme)
+  - [Video Sesi Kaldırma](#video-sesi-kaldrma)
+  - [Video Sesi Ekleme](#video-sesi-ekleme)
+  - [Video Yakınlaştırma](#video-yaknlatrma)
+  - [Video Uzaklaştırma](#video-uzaklatrma)
+  - [GIF Oluşturma](#gif-oluturma)
+  - [Yardım Almak](#yardm-almak)
+
+<a name="ffmpeg-nedir"></a>
+## FFmpeg Nedir?
+
+Video, ses ve diğer multimedya dosyalarını ve akışlarını işlemek için bir dizi kitaplık ve programdan oluşan ücretsiz ve açık kaynaklı bir yazılım projesidir. FFmpeg, Linux, macOS, Microsoft Windows, FreeBSD, OpenBSD ve Solaris işletim sistemlerinde çalışır. FFmpeg, GPL lisansı altında yayınlanmaktadır.
+
+---
+
+<a name="ffmpeg-nasl-kurulur"></a>
+## FFmpeg Nasıl Kurulur?
+
+Kurulum işlemi her işletim sisteminde farklılık göstermektedir. Aşağıda işletim sistemlerine göre kurulum işlemleri anlatılmıştır.
+
+<a name="linux"></a>
+### Linux
+
+Linux işletim sistemlerinde kurulum işlemi oldukça basittir. Aşağıdaki komutu terminal ekranına yazmanız yeterlidir.
+
+Ubuntu ve Debian tabanlı dağıtımlarda:
+
+```bash
+sudo apt install ffmpeg
+```
+
+Arch Linux tabanlı dağıtımlarda:
+
+```bash
+sudo pacman -S ffmpeg
+```
+
+Fedora ve Red Hat tabanlı dağıtımlarda:
+
+```bash
+sudo dnf install ffmpeg
+```
+
+<a name="macos"></a>
+### macOS
+
+macOS işletim sistemlerinde kurulum aşağıdaki komut ile yapılabilir.
+
+```bash
+brew install ffmpeg
+```
+
+Sisteminizde Homebrew kurulu değilse, aşağıdaki komut ile kurulum yapabilirsiniz.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+<a name="windows"></a>
+### Windows
+
+Windows işletim sistemlerinde kurulum işlemi linux ve macOS işletim sistemlerinde olduğu gibi tek komut ile yapılamaz. FFmpeg'in Windows işletim sistemlerinde kurulumu için aşağıdaki adımları takip etmeniz gerekmektedir.
+
+1. FFmpeg’i indirmek için [buraya](https://ffmpeg.org/download.html) tıklayın.
+2. İndirdiğiniz dosyayı açın.
+3. İndirdiğiniz dosyayı C sürücüsüne çıkartın.
+4. Çıkarılan dosyayı bilgisayarınıza tanıtmak için aşağıdaki komutu çalıştırın.
+
+```bash
+setx /M PATH "%PATH%;C:\ffmpeg\bin"
+```
+
+---
+
+<a name="ffmpeg-kullanm"></a>
+## FFmpeg Kullanımı
+
+FFmpeg kurulum işlemi tamamlandıktan sonra, terminal ekranına aşağıdaki komutu yazarak FFmpeg'in çalıştığını kontrol edebilirsiniz.
+
+```bash
+ffmpeg -version
+```
+
+Eğer FFmpeg kurulum işlemi başarılı bir şekilde tamamlanmışsa, aşağıdaki gibi bir çıktı alacaksınız.
+
+```bash
+ffmpeg version 4.4-essentials_build-www.gyan.dev
+built with gcc 10.3.0 (Rev6, Built by MSYS2 project)
+configuration: --enable-gpl --enable-version3 --enable-sdl2 --enable-fontconfig --enable-gnutls --enable-iconv --enable-libass --enable-libdav1d --enable-libbluray --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libtheora --enable-libtwolame --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libzimg --enable-lzma --enable-zlib --enable-gmp --enable-libvidstab --enable-libvorbis --enable-libvo-amrwbenc --enable-libmysofa --enable-libspeex --enable-libxvid --enable-libaom --enable-libmfx --enable-amf --enable-ffnvcodec --enable-cuvid --enable-d3d11va --enable-nvenc --enable-nvdec --enable-dxva2 --enable-avisynth
+libavutil 56. 70.100 / 56. 70.100
+libavcodec 58.134.100 / 58.134.100
+libavformat 58. 76.100 / 58. 76.100
+libavdevice 58. 13.100 / 58. 13.100
+libavfilter 7.110.100 / 7.110.100
+libswscale 5. 9.100 / 5. 9.100
+libswresample 3. 9.100 / 3. 9.100
+libpostproc 55. 9.100 / 55. 9.100
+```
+
+---
+
+<a name="ffmpeg-komutlar"></a>
+## FFmpeg Komutları
+
+FFmpeg komutlarının sayısı oldukça fazladır. Aşağıda en sık kullanılan komutlar derlenmiştir. FFmpeg komutlarının tamamına [buradan](https://ffmpeg.org/ffmpeg.html) ulaşabilirsiniz.
+
+<a name="bilgi-alma"></a>
+### Bilgi Alma
+
+Video dosyasının bilgilerini almak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i file.mp4
+```
+
+---
+
+<a name="video-format-dönütürme"></a>
+### Video Format Dönüştürme
+
+Video dosyasının formatını dönüştürmek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i file.mp4 file.mp3
+```
+
+---
+
+<a name="video-sktrma"></a>
+### Video Sıkıştırma
+
+Video dosyalarını sıkıştırmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -c:v libx264 -crf 23 -c:a aac -b:a 128k -movflags +faststart output.mp4
+```
+
+- `-c:v libx264` : Video kodlayıcı olarak libx264 kullanılacak.
+- `-crf 23` : Kalite olarak 23 kullanılacak.
+- `-c:a aac` : Ses kodlayıcı olarak aac kullanılacak.
+- `-b:a 128k` : Ses kalitesi olarak 128k kullanılacak.
+- `-movflags +faststart` : Dosya başına video bilgileri yazılacak.
+
+---
+
+<a name="video-kesme"></a>
+### Video Kesme
+
+Video dosyalarını kesmek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -ss 00:00:00 -to 00:00:10 -c copy output.mp4
+```
+
+- `-ss 00:00:00` : Başlangıç zamanı olarak 00:00:00 kullanılacak.
+- `-to 00:00:10` : Bitiş zamanı olarak 00:00:10 kullanılacak.
+- `-c copy` : Video ve ses kodlayıcı olarak kopyalama kullanılacak.
+
+---
+
+<a name="video-parçalama"></a>
+### Video Parçalama
+
+Video dosyalarını parçalamak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -c copy -map 0 -segment_time 00:00:10 -f segment output%03d.mp4
+```
+
+- `-c copy` : Video ve ses kodlayıcı olarak kopyalama kullanılacak.
+- `-map 0` : Tüm dosya haritalanacak.
+- `-segment_time 00:00:10` : Segment süresi olarak 00:00:10 kullanılacak.
+- `-f segment` : Çıktı formatı olarak segment kullanılacak.
+
+---
+
+<a name="video-birletirme"></a>
+### Video Birleştirme
+
+Video dosyalarını birleştirmek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -f concat -safe 0 -i dosyalar.txt -c copy output.mp4
+```
+
+- `-f concat` : Çıktı formatı olarak concat kullanılacak.
+- `-safe 0` : Çıktı dosyası güvenliği olarak 0 kullanılacak.
+- `-i dosyalar.txt` : Girdi dosyası olarak dosyalar.txt kullanılacak.
+- `-c copy` : Video ve ses kodlayıcı olarak kopyalama kullanılacak.
+
+---
+
+<a name="video-döndürme"></a>
+### Video Döndürme
+
+Video dosyalarını döndürmek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -vf "transpose=1" output.mp4
+```
+
+- `-vf "transpose=1"` : Video filtresi olarak döndürme kullanılacak.
+
+---
+
+<a name="video-boyutlandrma"></a>
+### Video Boyutlandırma
+
+Video dosyalarını boyutlandırmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4
+```
+
+- `-vf scale=1280:720` : Video filtresi olarak boyutlandırma kullanılacak.
+
+---
+
+<a name="video-hzlandrma"></a>
+### Video Hızlandırma
+
+Video dosyalarını hızlandırmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -filter:v "setpts=0.5*PTS" output.mp4
+```
+
+- `-filter:v "setpts=0.5*PTS"` : Video filtresi olarak hızlandırma kullanılacak.
+
+---
+
+<a name="video-yavalatma"></a>
+### Video Yavaşlatma
+
+Video dosyalarını yavaşlatmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -filter:v "setpts=2.0*PTS" output.mp4
+```
+
+- `-filter:v "setpts=2.0*PTS"` : Video filtresi olarak yavaşlatma kullanılacak.
+
+---
+
+<a name="video-metin-ekleme"></a>
+### Video Metin Ekleme
+
+Video dosyalarına metin eklemek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -vf "drawtext=fontfile=font.ttf: text='Metin': fontcolor=white: fontsize=30: x=(w-text_w)/2: y=(h-text_h)/2" output.mp4
+```
+
+- `-vf "drawtext=fontfile=font.ttf: text='Metin': fontcolor=white: fontsize=30: x=(w-text_w)/2: y=(h-text_h)/2"` : Video filtresi olarak metin ekleme kullanılacak.
+
+---
+
+<a name="video-sesi-düzenleme"></a>
+### Video Sesi Düzenleme
+
+Video dosyalarının sesini düzenlemek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -filter:a "volume=0.5" output.mp4
+```
+
+- `-filter:a "volume=0.5"` : Ses filtresi olarak ses düzenleme kullanılacak.
+
+---
+
+<a name="video-sesi-kaldrma"></a>
+### Video Sesi Kaldırma
+
+Video dosyalarının sesini kaldırmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -an output.mp4
+```
+
+- `-an` : Ses kodlayıcı olarak hiçbiri kullanılacak.
+
+---
+
+<a name="video-sesi-ekleme"></a>
+### Video Sesi Ekleme
+
+Video dosyalarına ses eklemek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:v:0 -map 1:a:0 output.mp4
+```
+
+- `-i input.mp3` : Girdi dosyası olarak input.mp3 kullanılacak.
+- `-c copy` : Video ve ses kodlayıcı olarak kopyalama kullanılacak.
+- `-map 0:v:0` : Video dosyasının 0. haritası kullanılacak.
+- `-map 1:a:0` : Ses dosyasının 0. haritası kullanılacak.
+
+---
+
+<a name="video-yaknlatrma"></a>
+### Video Yakınlaştırma
+
+Video dosyalarını yakınlaştırmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -filter:v "crop=in_w/2:in_h/2" output.mp4
+```
+
+- `-filter:v "crop=in_w/2:in_h/2"` : Video filtresi olarak yakınlaştırma kullanılacak.
+
+---
+
+<a name="video-uzaklatrma"></a>
+### Video Uzaklaştırma
+
+Video dosyalarını uzaklaştırmak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -filter:v "crop=in_w*2:in_h*2" output.mp4
+```
+
+- `-filter:v "crop=in_w*2:in_h*2"` : Video filtresi olarak uzaklaştırma kullanılacak.
+
+---
+
+<a name="gif-oluturma"></a>
+### GIF Oluşturma
+
+Video dosyalarını gif olarak kaydetmek için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -i input.mp4 -vf "fps=15,scale=320:-1:flags=lanczos,palettegen" pallet.png
+ffmpeg -i input.mp4 -i pallet.png -filter_complex "fps=15,scale=320:-1:flags=lanczos[x];[x][1:v]paletteuse" output.gif
+```
+
+- `-vf "fps=15,scale=320:-1:flags=lanczos,palettegen"` : Video filtresi olarak fps, boyutlandırma ve palet oluşturma kullanılacak.
+- `-filter_complex "fps=15,scale=320:-1:flags=lanczos[x];[x][1:v]paletteuse"` : Video filtresi olarak fps, boyutlandırma ve palet kullanılacak.
+
+---
+
+<a name="yardm-almak"></a>
+### Yardım Almak
+
+Yardım almak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ffmpeg -h
+```
