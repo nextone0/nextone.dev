@@ -1,0 +1,101 @@
+---
+title: "Blender Hızlı Render Nasıl Alınır?"
+date: "27 Ekim, 2022"
+excerpt: "Blender'da projelerimizin render süreleri bir hayli uzun sürebiliyor. Bu süreci hızlandırmak için kullanmış olduğum render ayarlarını paylaşıyorum. (Yapılan ayarlar render kalitesini bozmamaktadır.)"
+cover_image: "/Blender-Hizli-Render/thumbnail.jpg"
+author:
+  name: "Muhammed Erdoğan"
+  picture: "https://github.com/MuhammedErdogan05.png"
+---
+
+- [Blender Render Almak Nedir?](#blender-render-almak-nedir)
+- [Uygun CPU ve Ekran Kartı Seçimi](#uygun-cpu-ve-ekran-kart-seçimi)
+- [-Render Properties-](#-render-properties-)
+- [Sampling](#sampling)
+- [Light Paths](#light-paths)
+- [Performance](#performance)
+- [-World Properties-](#-world-properties-)
+- [Settings - Surface](#settings-surface)
+- [NOT](#not)
+  <a name="blender-render-almak-nedir"></a>
+
+## Blender Render Almak Nedir?
+
+Blender'da yapılan projelerin, belirli boyutlarda ve formatlarda dışarı aktarılması olayıdır. Dışarı aktarılan çalışmalar; tanınan dosya formatları halinde daha kolay taşınabilir, görüntülenebilir, oynatılabilir, dinlenebilir ve dağıtılabilir hale gelirler.
+
+---
+
+<a name="uygun-cpu-ve-ekran-kart-seçimi"></a>
+## Uygun CPU ve Ekran Kartı Seçimi
+
+`File>Properties` kısmına tıklayın. Açılan pencereden:
+
+Eğer ekran kartınız `Nvidia` nın eski sürümlerinden ise `CUDA` yı, yeni sürümlerinden ise `OptiX` i seçiniz.
+Benim ekran kartım `AMD` olduğu için `HIP` ı seçtim.
+
+<p align="center">![ekran](/Blender-Hizli-Render/ekran-1.png)</p>
+
+---
+
+<a name="-render-properties-"></a>
+## -Render Properties-
+
+Bu kısım render için olan ayarların bulunduğu kısımdır.
+
+`Scene` kısmının altındaki ayarları resimde belirttiğim şekildeki gibi yapıyoruz. Bu kısım render alırken `CPU` veya `Ekran Kartı` arasındaki seçimimizi yaptığımız kısımdır.
+
+<p align="center">![scene](/Blender-Hizli-Render/scene-2.png)</p>
+
+<a name="sampling"></a>
+## Sampling
+
+Bu kısımda ise `Sampling` sekmesi altındaki `Viewport` un özelliklerinden olan `Denoise` kısmının tikini kaldırıyoruz.
+
+Yine `Sampling` sekmesi altındaki `Render` kısmının `Noise Threshold` özelliğinin tikini açıyoruz ve değerini `0.5000` olarak değiştiriyoruz. Üst kısımda kapattığımız `Denoise` tikini bu kısımda açıyoruz.
+
+<p align="center">![render ayari](/Blender-Hizli-Render/render-ayari-3.png)</p>
+
+<a name="light-paths"></a>
+## Light Paths
+
+`Light Paths` sekmesi altındaki `Max Bounce` un tüm özelliklerini görselde belirttiğim gibi ayarlayalım.
+
+- Alt sekmelerdeki özellikler **default** olarak bu şekilde gelmektedir. Sizde farklı ise bu ayarları kullanabilirsiniz. Render kısmında hata veya bozulma olursa **default** ayarları kullanmanızı öneririm.
+
+<p align="center">![light path](/Blender-Hizli-Render/light-path-4.png)</p>
+
+<a name="performance"></a>
+## Performance
+
+`Performance` sekmesi altındaki `Acceleration Structure` un üzelliklerini tikliyoruz ve bu özellikler arasındaki sayıyı değiştirmiyoruz.
+
+- Sizin bilgisayar özelliklerinize göre `Use Curves BVH` özelliğinin altında da bunun gibi bir özellik görülebilir. Eğer bu özellik sizde görünüyor ise o özelliğin de tikli olması gerekmektedir.
+
+<p align="center">![performance](/Blender-Hizli-Render/performance-5.png)</p>
+
+---
+
+<a name="-world-properties-"></a>
+## -World Properties-
+
+Bu kısımda ise `Surface` sekmesi altındaki `Color` özelliğini `Sky Texture` yapıyoruz.
+
+<p align="center">![sky texture](/Blender-Hizli-Render/sky-texture-6.png)</p>
+
+<a name="settings-surface"></a>
+## Settings - Surface
+
+Son olarak `Settings` sekmesi altında bulunan `Surface` sekmesinin `Sampling` özelliğini `Manual` yapıp `Map Resolution` özelliğini `512` yapıyoruz.
+
+<p align="center">![surface](/Blender-Hizli-Render/surface-7.png)</p>
+
+Tüm ayarlarımız tamamlanmış bulunmakta. Bu ayarlar sonucunda render sürenizin ciddi anlamda azaldığını göreceksiniz.
+
+---
+
+<a name="not"></a>
+## NOT
+
+Yaptığımız ayarlamaların `Blender` ı her açtığınızda kayıtlı bir şekilde kalmasını istiyorsanız; ayarlamaların tamamını yaptıktan sonra `File` butonunun altında yer alan `Defaults` sekmesinin üzerine geldiğimizde açılan `Save Startup File` a tıklıyoruz ve işlemimiz tamamlanmış oluyor.
+
+<p align="center">![save](/Blender-Hizli-Render/save-8.png)</p>
