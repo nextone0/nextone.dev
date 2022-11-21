@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import Head from "next/head";
 
 import matter from "gray-matter";
@@ -8,7 +7,7 @@ import styles from "../styles/Home.module.css";
 
 import { Post } from "../components";
 
-const Home = ({ posts }) => {
+export default function Home({ posts }) {
   return (
     <>
       <Head>
@@ -22,29 +21,20 @@ const Home = ({ posts }) => {
       </div>
     </>
   );
-};
+}
 
-export const getStaticProps = async () => {
-  const files = fs.readdirSync(path.join("posts"));
-
-  const posts = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", filename),
-      "utf-8"
-    );
-    const { data: frontMatter } = matter(markdownWithMeta);
-
-    return {
-      frontMatter,
-      slug: filename.split(".")[0],
-    };
-  });
-
+export async function getStaticProps() {
   return {
     props: {
-      posts,
+      posts: fs.readdirSync("posts").map((filename) => {
+        const slug = filename.replace(".mdx", "");
+        const { data: frontMatter } = matter.read(`posts/${filename}`);
+
+        return {
+          slug,
+          ...frontMatter,
+        };
+      }),
     },
   };
-};
-
-export default Home;
+}

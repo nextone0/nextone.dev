@@ -9,12 +9,14 @@
   margin: 0 auto;
   padding: 0 12px;
   display: flex;
+  align-items: center;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
 }
 
 .svg {

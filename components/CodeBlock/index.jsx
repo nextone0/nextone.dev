@@ -24,7 +24,7 @@ const CodeBlock = ({ children, className }) => {
       <SyntaxHighlighter style={atomDark} language={language}>
         {children}
       </SyntaxHighlighter>
-      <span className={styles.copyBtn} onClick={(e) => copyToClipboard(e)}>
+      <span onClick={(e) => copyToClipboard(e)} className={styles.copyBtn}>
         {copyText}
       </span>
     </div>

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-@import url("https://gitcdn.link/cdn/sindresorhus/github-markdown-css/main/github-markdown-dark.css");
+@import url("github-markdown-dark.css");
 
 * {
   box-sizing: border-box;
@@ -10,28 +10,4 @@ body {
   margin: 0;
   background-color: #1e1e1e;
   font-family: "Poppins", system-ui;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  object-fit: cover;
-}
-
-.markdown-body {
-  margin: 12px;
-  background-color: inherit;
-}
-
-.markdown-body iframe,
-.markdown-body video,
-.markdown-body audio {
-  width: 100%;
-}
-
-.markdown-body iframe {
-  height: 500px;
-  border: 0;
 }

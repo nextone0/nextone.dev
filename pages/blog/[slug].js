@@ -1,65 +1,65 @@
 import fs from "fs";
-import path from "path";
-import Link from "next/link";
+import Head from "next/head";
 
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
+import remarkGfm from "remark-gfm";
+
+//
+// More on rehype plugins and remark plugins here: https://github.com/remarkjs/remark/blob/main/doc/plugins.md
+//
 
 import styles from "../../styles/Blog.module.css";
 
-import { Button, CodeBlock } from "../../components";
+import { CodeBlock } from "../../components";
 
-const components = {
-  Button({ children }) {
-    return <Button>{children}</Button>;
-  },
-  pre: ({ children }) => <CodeBlock {...children.props} />,
-};
+export default function Post({ frontMatter, mdxSource }) {
+  const components = {
+    pre: ({ children }) => <CodeBlock {...children.props} />,
+  };
 
-const PostPage = ({ mdxSource }) => {
   return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>{mdxSource.scope.title}</h1>
-      <div className={styles.date}>{mdxSource.scope.date}</div>
-      <img className={styles.coverImage} src={mdxSource.scope.cover_image} />
-      <div className="markdown-body">
-        <MDXRemote {...mdxSource} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>{frontMatter.title}</title>
+      </Head>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>{frontMatter.title}</h1>
+        <div className={styles.date}>{frontMatter.date}</div>
+        <img src={frontMatter.cover_image} className={styles.coverImage} />
+        <div
+          className="markdown-body"
+          style={{ margin: "12px", backgroundColor: "inherit" }}
+        >
+          <MDXRemote {...mdxSource} components={components} />
+        </div>
+      </main>
+    </>
   );
-};
+}
 
-const getStaticPaths = async () => {
-  const files = fs.readdirSync(path.join("posts"));
-
-  const paths = files.map((filename) => ({
-    params: {
-      slug: filename.replace(".mdx", ""),
-    },
-  }));
-
+export async function getStaticPaths() {
   return {
-    paths,
+    paths: fs.readdirSync("posts").map((file) => ({
+      params: { slug: file.replace(".mdx", "") },
+    })),
     fallback: false,
   };
-};
+}
 
-const getStaticProps = async ({ params: { slug } }) => {
-  const markdownWithMeta = fs.readFileSync(
-    path.join("posts", slug + ".mdx"),
-    "utf-8"
-  );
-
-  const { data: frontMatter, content } = matter(markdownWithMeta);
-  const mdxSource = await serialize(content, { scope: frontMatter });
+export async function getStaticProps({ params: { slug } }) {
+  const { data: frontMatter, content } = matter.read(`posts/${slug}.mdx`);
+  const mdxSource = await serialize(content, {
+    scope: frontMatter,
+    mdxOptions: { remarkPlugins: [remarkGfm] },
+  });
 
   return {
     props: {
+      frontMatter,
       mdxSource,
     },
   };
-};
-
-export { getStaticProps, getStaticPaths };
-export default PostPage;
+}
