@@ -11,9 +11,9 @@ export default function Home({ posts }) {
   return (
     <>
       <Head>
-        <title>Nextone</title>
+        <title>Nextone - Yazılımcı ve Geliştiricilerin Bilgi Platformu</title>
+        <meta name="twitter:image" content="/og-image.jpg" />
       </Head>
-
       <div className={styles.posts}>
         {posts.map((post, index) => (
           <Post key={index} post={post} />

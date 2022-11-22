@@ -23,12 +23,18 @@ export default function Post({ frontMatter, mdxSource }) {
     <>
       <Head>
         <title>{frontMatter.title}</title>
+        <meta property="og:description" content={frontMatter.excerpt} />
+        <meta name="twitter:image" content={frontMatter.cover_image} />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>{frontMatter.title}</h1>
         <div className={styles.date}>{frontMatter.date}</div>
-        <img src={frontMatter.cover_image} className={styles.coverImage} />
+        <img
+          src={frontMatter.cover_image}
+          alt={frontMatter.title}
+          className={styles.coverImage}
+        />
         <div
           className="markdown-body"
           style={{ margin: "12px", backgroundColor: "inherit" }}
