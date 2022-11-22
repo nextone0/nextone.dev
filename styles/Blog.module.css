@@ -23,6 +23,17 @@
 
 .coverImage {
   width: 100%;
-  max-height: 800px;
+  height: 250px;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .coverImage {
+    height: 500px;
+  }
+}
+
+.coverImage img {
   border-radius: 12px;
+  object-fit: cover;
 }
