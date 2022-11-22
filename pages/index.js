@@ -12,7 +12,7 @@ export default function Home({ posts }) {
     <>
       <Head>
         <title>Nextone - Yazılımcı ve Geliştiricilerin Bilgi Platformu</title>
-        <meta name="twitter:image" content="/og-image.jpg" />
+        <meta name="twitter:image" content="/images/og-image.jpg" />
       </Head>
       <div className={styles.posts}>
         {posts.map((post, index) => (
