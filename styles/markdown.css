@@ -1,0 +1,74 @@
+/* 
+a, abbr, acronym, address, applet, area, article, aside, audio, b, base, basefont, bdi, bdo, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, data, datalist, dd, del, details, dfn, dialog, dir, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, frame, frameset, h1, h2, h3, h4, h5, h6, head, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, main, map, mark, meta, meter, nav, noframes, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rp, rt, ruby, s, samp, script, section, select, small, source, span, strike, strong, style, sub, summary, sup, svg, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, tt, u, ul, var, video, wbr
+*/
+
+.markdown-body {
+  margin: 12px;
+  color: #eaeaea;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  text-decoration: none;
+}
+
+.markdown-body img,
+.markdown-body video,
+.markdown-body audio,
+.markdown-body iframe {
+  max-width: 100%;
+}
+
+.markdown-body hr {
+  height: 4px;
+  margin: 24px 0;
+  background-color: #404040;
+  border-radius: 6px;
+  border: 0;
+}
+
+.markdown-body p code,
+.markdown-body li code,
+.markdown-body table code {
+  padding: 2px 6px;
+  background-color: #424242;
+  border-radius: 6px;
+}
+
+.markdown-body pre code span {
+  text-decoration: none !important;
+}
+
+.markdown-body blockquote {
+  margin-left: 0;
+  padding: 0 16px;
+  border-left: 4px solid #a9a9a9;
+  color: #a9a9a9;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 12px;
+  border: 1px solid #303030;
+}
+
+.markdown-body table tr {
+  background-color: #171717;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #222222;
+}
+
+.markdown-body .contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown-body .contains-task-list .contains-task-list {
+  padding-left: 32px;
+}

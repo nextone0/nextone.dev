@@ -32,19 +32,9 @@ export default function Post({ frontMatter, mdxSource }) {
         <h1 className={styles.title}>{frontMatter.title}</h1>
         <div className={styles.date}>{frontMatter.date}</div>
         <div className={styles.coverImage}>
-          <Image
-            src={frontMatter.cover_image}
-            alt={frontMatter.title}
-            fill
-            sizes="(min-width: 1920) 80vw, 60vw"
-            placeholder="blur"
-            blurDataURL={frontMatter.cover_image}
-          />
+          <Image src={frontMatter.cover_image} alt={frontMatter.title} fill />
         </div>
-        <div
-          className="markdown-body"
-          style={{ margin: "12px", backgroundColor: "inherit" }}
-        >
+        <div className="markdown-body">
           <MDXRemote {...mdxSource} components={components} />
         </div>
       </main>

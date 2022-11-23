@@ -11,9 +11,7 @@ export default function Post({ post }) {
           src={post.cover_image}
           alt={post.title}
           fill
-          placeholder="blur"
           sizes="(min-width: 1920) 80vw, 60vw"
-          blurDataURL={post.cover_image}
         />
       </div>
       <div className={styles.date}>{post.date}</div>
