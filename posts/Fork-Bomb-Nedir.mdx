@@ -1,38 +1,36 @@
 ---
 title: "Fork Bomb Nedir?"
 date: "23 Kasım, 2022"
-excerpt: "Fork Bomb, bir işletim sistemindeki işlemciyi yormak için kullanılan bir saldırı yöntemidir. Bu saldırı yöntemi, işletim sistemindeki işlemciyi yormak için bir işlemi sürekli olarak kopyalayarak işlemciyi yormaktadır."
+excerpt: "Fork Bomb, bir işletim sistemindeki işlemciyi yormak için kullanılan bir saldırı yöntemidir. Ne kadar güçlü bir işlemciniz olursa olsun sonuç kaçınılmazdır."
 cover_image: "/blog/Fork-Bomb-Nedir/cover.jpg"
 author:
   name: "Muhammet Emin Akalan"
   picture: "https://github.com/05akalan57.png"
 ---
 
-Fork Bomb, bir işletim sistemindeki işlemciyi yormak için kullanılan bir saldırı yöntemidir. Bu saldırı yöntemi, işletim sistemindeki işlemciyi yormak için bir işlemi sürekli olarak **kendini kopyalayarak** işlemciyi yormaktadır. Ne kadar güçlü bir işlemciniz olursa olsun sonuç kaçınılmazdır.
+Fork Bomb, bir işletim sistemindeki işlemciyi yormak ve kaynakları tüketmek için kullanılan bir saldırı yöntemidir. Ne kadar güçlü bir işlemciniz olursa olsun sonuç kaçınılmazdır.
 
-## Peki bu saldırı yöntemini nasıl yapabiliriz?
+## Peki Bu Saldırı Yöntemini Nasıl Yapabiliriz?
 
-Öncelikle linux işletim sisteminde bir terminal açıyoruz. Ardından aşağıdaki komutu yazıyoruz.
+Öncelikle Linux işletim sisteminde komut satırını açıp. Aşağıdaki komutu yazıyoruz.
 
 ```bash
 :(){ :|:& };:
 ```
 
-Peki saldırı sadece linux işletim sisteminde çalışıyor mu? Hayır, saldırı sadece linux işletim sisteminde değil, windows işletim sisteminde de çalışmaktadır. Aşağıdaki komutu windows işletim sisteminde çalıştırırsanız saldırı başlayacaktır.
+Peki bu saldırı sadece Linux işletim sisteminde mi çalışıyor. Hayır, saldırı sadece Linux işletim sisteminde değil, windows işletim sisteminde de çalışmaktadır. Aşağıdaki komutu windows işletim sisteminde çalıştırırsanız saldırı başlayacaktır.
 
 ```batch
 %0|%0
 ```
 
-Komutu yazıp çalışırken `CTRL + C` tuşuna basıp iptal etme düşünceniz varsa nafile çünkü komuttaki `&` karakteri işlemi arka plana atar. Bu yüzden komutu çalıştırdıktan sonra `CTRL + C` tuşuna basarak iptal edemezsiniz.
-
-> **Uyarı:** Bu komutu çalıştırdıktan sonra işletim sisteminizi kısa bir süre (Yaklasık 5 Saniye) içinde donmasına işlem yapılamaz hale gelmesine sebep olacaktır. Bu yüzden komutu çalıştırmadan önce işletim sisteminizde önemli bir işlem açık olmadığından emin olun.
+> **Uyarı:** Bu komutu çalıştırdıktan kısa bir süre sonra işletim sisteminizin donmasına ve işlem yapılamaz hale gelmesine sebep olacaktır. Bu yüzden komutu çalıştırmadan önce sisteminizde önemli bir işlem açık olmadığından emin olun.
 
 <video src="/blog/Fork-Bomb-Nedir/incredibles-2.webm" muted autoPlay loop />
 
 ## Diğer Programlama Dillerinde Fork Bomb
 
-Yukarda bahsettiğimiz komutlar Linux özelinde **bash** ve Windows özelinde **batch** komutlarıdır.
+Yukarda bahsettiğimiz komutlar Linux özelinde **bash** ve windows özelinde **batch** komutlarıdır.
 
 Peki diğer programlama dillerinde Fork Bomb nasıl yapılır?
 
@@ -66,11 +64,13 @@ int main(int argc, char **argv) {
 }
 ```
 
-Yazı uzun olmasın diye sadece 3 dilde yazdım. Diğer dillerde de kullanımını merak ediyorsanız [buradan](https://github.com/aaronryank/fork-bomb) inceleyebilirsiniz.
+Diğer dillerde de kullanımını merak ediyorsanız [buradan](https://github.com/aaronryank/fork-bomb) inceleyebilirsiniz.
 
-## Peki bu saldırı yöntemini nasıl engelleyebiliriz?
+## Peki Bu Saldırı Yöntemini Nasıl Engelleyebiliriz?
 
-Bu saldırı yöntemini engellemek için işletim sistemindeki bir çok yöntem bulunmaktadır. Bunlardan bir tanesi kullanıcı bazlı işlem limiti ayarlamaktır. Örnek vermek gerekirse Muhammet Emin Akalan kullanıcısının işlem limiti 1000 olarak ayarlanmış olsun. Bu durumda Muhammet Emin Akalan kullanıcısı 1000 işlemi geçtikten sonra yeni bir işlem açamayacaktır. Bu durumda saldırı başladıktan kısa bir süre sonra limit aşıldığı için saldırı duracaktır.
+Bu saldırı yöntemini engellemek için bir çok yöntem bulunmaktadır. Bunlardan bir tanesi kullanıcı bazlı işlem limiti ayarlamaktır.
+
+Örnek vermek gerekirse Muhammet Emin Akalan kullanıcısının işlem limiti 1000 olarak ayarlanmış olsun. Bu durumda saldırı başladıktan kısa bir süre sonra limit aşıldığı için saldırı duracaktır.
 
 ### İşlem Limiti Ayarlamak
 

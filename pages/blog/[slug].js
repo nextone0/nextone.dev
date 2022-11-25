@@ -13,10 +13,11 @@ import remarkGfm from "remark-gfm";
 
 import styles from "../../styles/Blog.module.css";
 
-import { CodeBlock } from "../../components";
+import { CodeBlock, YouTube } from "../../components";
 
 export default function Post({ frontMatter, mdxSource }) {
   const components = {
+    YouTube,
     pre: ({ children }) => <CodeBlock {...children.props} />,
   };
 
