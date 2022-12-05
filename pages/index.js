@@ -2,6 +2,7 @@ import fs from "fs";
 import Head from "next/head";
 
 import matter from "gray-matter";
+import moment from "moment";
 
 import styles from "../styles/Home.module.css";
 
@@ -33,6 +34,7 @@ export async function getStaticProps() {
         return {
           slug,
           ...frontMatter,
+          date: moment(frontMatter.date).locale("tr").format("LL"),
         };
       }),
     },

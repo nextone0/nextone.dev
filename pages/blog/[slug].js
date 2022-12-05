@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import remarkGfm from "remark-gfm";
+import moment from "moment";
 
 //
 // More on rehype plugins and remark plugins here: https://github.com/remarkjs/remark/blob/main/doc/plugins.md
@@ -54,15 +55,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const { data: frontMatter, content } = matter.read(`posts/${slug}.mdx`);
-  const mdxSource = await serialize(content, {
-    scope: frontMatter,
-    mdxOptions: { remarkPlugins: [remarkGfm] },
-  });
 
   return {
     props: {
-      frontMatter,
-      mdxSource,
+      frontMatter: {
+        ...frontMatter,
+        date: moment(frontMatter.date).locale("tr").format("LL"),
+      },
+      mdxSource: await serialize(content, {
+        scope: frontMatter,
+        mdxOptions: { remarkPlugins: [remarkGfm] },
+      }),
     },
   };
 }
